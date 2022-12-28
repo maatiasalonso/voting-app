@@ -1,10 +1,25 @@
 <x-app-layout>
     <div>
-        <a href="/" class="flex items-center font-semibold hover:underline">
-            <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        <a
+            href="/"
+            class="flex items-center font-semibold hover:underline"
+        >
+            <svg
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-4 h-4"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
             </svg>
-            <span class="ml-2">All ideas</span>
+            <span class="ml-2">
+                All ideas
+            </span>
         </a>
     </div>
 
@@ -12,12 +27,21 @@
         <div class="flex flex-1 px-4 py-6">
             <div class="flex-none">
                 <a href="#">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    <img
+                        src="https://source.unsplash.com/200x200/?face&crop=face&v=1"
+                        alt="avatar"
+                        class="w-14 h-14 rounded-xl"
+                    >
                 </a>
             </div>
             <div class="w-full mx-4">
                 <h4 class="text-xl font-semibold">
-                    <a href="#" class="hover:underline">A random title</a>
+                    <a
+                        href="#"
+                        class="hover:underline"
+                    >
+                        A random title
+                    </a>
                 </h4>
                 <div class="mt-3 text-gray-600">
                     Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero ea tenetur dolorem perspiciatis. Quia quae quidem voluptatibus magnam aut cupiditate sed cumque iusto provident. Nulla voluptas eveniet quod soluta commodi.
@@ -32,17 +56,50 @@
                         <div>&bull;</div>
                         <div class="text-gray-700">3 Comments</div>
                     </div>
-                    <div class="flex items-center hidden space-x-2">
+                    <div
+                        x-data="{ isOpen: false }"
+                        class="flex items-center space-x-2"
+                    >
                         <div class="px-4 py-2 text-xs font-bold leading-none text-center uppercase bg-gray-200 rounded-full w-28 h-7">
                             Open
                         </div>
-                        <button class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
-                            <svg fill="currentColor" width="24" height="6">
-                                <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">
+                        <button
+                            @click="isOpen = !isOpen"
+                            class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7"
+                        >
+                            <svg
+                                fill="currentColor"
+                                width="24"
+                                height="6"
+                            >
+                                <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z"
+                                      style="color: rgba(163, 163, 163, .5)"
+                                >
                             </svg>
-                            <ul class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl">
-                                <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Spam</a></li>
-                                <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete</a></li>
+                            <ul
+                                x-cloak
+                                x-show.="isOpen"
+                                x-transition.duration.200ms
+                                @click.away="isOpen = false"
+                                @keydown.escape.window="isOpen = false"
+                                class="absolute z-10 py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl"
+                            >
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100"
+                                    >
+                                        Mark as Spam
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        href="#"
+                                        class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100"
+                                    >
+                                        Delete
+                                    </a>
+                                </li>
                             </ul>
                         </button>
                     </div>
@@ -53,41 +110,114 @@
 
     <div class="flex items-center justify-between mt-5 buttons-container">
         <div class="flex items-center ml-6 space-x-4">
-            <div class="relative">
-                <button type="button"
-                        class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in bg-blue-500 border border-blue-500 h-11 rounded-xl hover:border-blue-600 hover:bg-blue-600">
+            <div
+                x-data="{ isOpen: false }"
+                class="relative"
+            >
+                <button
+                    @click="isOpen = !isOpen"
+                    type="button"
+                    class="flex items-center justify-center w-32 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in bg-blue-500 border border-blue-500 h-11 rounded-xl hover:border-blue-600 hover:bg-blue-600"
+                >
                     Reply
                 </button>
-                <div class="absolute z-10 hidden mt-3 text-sm font-semibold text-left bg-white shadow-lg w-96 rounded-xl">
-                    <form action="#" method="POST" class="px-4 py-6 space-y-4">
+                <div
+                    x-cloak
+                    x-show="isOpen"
+                    x-transition.duration.200ms
+                    @click.away="isOpen = false"
+                    @keydown.escape.window="isOpen = false"
+                    class="absolute z-10 mt-3 text-sm font-semibold text-left bg-white shadow-lg w-96 rounded-xl"
+                >
+                    <form
+                        action="#"
+                        method="POST"
+                        class="px-4 py-6 space-y-4"
+                    >
                         <div>
-                            <textarea name="post_comment" id="post_comment" cols="30" rows="4" class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl" placeholder="Go ahead. Share your thoughts..."></textarea>
+                            <textarea
+                                name="post_comment"
+                                id="post_comment"
+                                cols="30"
+                                rows="4"
+                                class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl"
+                                placeholder="Go ahead. Share your thoughts..."
+                            ></textarea>
                         </div>
 
                         <div class="flex items-center space-x-3">
-                            <button type="submit"
-                                    class="flex items-center justify-center w-1/2 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in bg-blue-500 border border-blue-500 h-11 rounded-xl hover:border-blue-600 hover:bg-blue-600">
+                            <button
+                                type="submit"
+                                class="flex items-center justify-center w-1/2 px-6 py-3 text-sm font-semibold text-white transition duration-150 ease-in bg-blue-500 border border-blue-500 h-11 rounded-xl hover:border-blue-600 hover:bg-blue-600"
+                            >
                                 Post Comment
                             </button>
-                            <button type="button" class="flex items-center justify-center w-1/3 px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-300 hover:bg-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="100px" height="100px" stroke-width="1.5" stroke="currentColor" class="w-4 text-gray-600 transform -rotate-45">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                            <button
+                                type="button"
+                                class="flex items-center justify-center w-1/3 px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-300 hover:bg-gray-300"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    width="100px"
+                                    height="100px"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-4 text-gray-600 transform -rotate-45"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13"
+                                    />
                                 </svg>
-                                <span class="ml-2">Attach</span>
+                                <span
+                                    class="ml-2"
+                                >
+                                    Attach
+                                </span>
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <div class="relative">
-                <button type="button" class="flex items-center justify-center px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 w-36 h-11 rounded-xl hover:border-gray-300 hover:bg-gray-300">
-                    <span>Set Status</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 ml-2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+            <div
+                x-data="{ isOpen: false }"
+                class="relative"
+            >
+                <button
+                    @click="isOpen = !isOpen"
+                    type="button"
+                    class="flex items-center justify-center px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 w-36 h-11 rounded-xl hover:border-gray-300 hover:bg-gray-300"
+                >
+                    <span class="ml-2">
+                        Set Status
+                    </span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="w-4 h-4 ml-2"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
+                        />
                     </svg>
                 </button>
-                <div class="absolute z-20 hidden mt-3 text-sm font-semibold text-left bg-white shadow-lg w-80 rounded-xl">
+                <div
+                    x-cloak
+                    x-show="isOpen"
+                    x-transition.duration.200ms
+                    @click.away="isOpen = false"
+                    @keydown.escape.window="isOpen = false"
+                    class="absolute z-20 mt-3 text-sm font-semibold text-left bg-white shadow-lg w-80 rounded-xl"
+                >
                     <form action="#" method="POST" class="px-4 py-6 space-y-4">
                         <div class="space-y-2">
                             <div>
@@ -176,12 +306,23 @@
                             <div>&bull;</div>
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center hidden space-x-2">
-                            <button class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
+                        <div
+                            x-data="{ isOpen: false }"
+                            class="flex items-center space-x-2">
+                            <button
+                                @click="isOpen = !isOpen"
+                                class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
                                 <svg fill="currentColor" width="24" height="6">
                                     <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">
                                 </svg>
-                                <ul class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl">
+                                <ul
+                                    x-cloak
+                                    x-show="isOpen"
+                                    x-transition.duration.200ms
+                                    @click.away="isOpen = false"
+                                    @keydown.escape.window="isOpen = false"
+                                    class="absolute z-10 py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl"
+                                >
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Spam</a></li>
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete</a></li>
                                 </ul>
@@ -213,12 +354,12 @@
                             <div>&bull;</div>
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center hidden space-x-2">
+                        <div class="flex items-center space-x-2">
                             <button class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
                                 <svg fill="currentColor" width="24" height="6">
                                     <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">
                                 </svg>
-                                <ul class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl">
+                                <ul class="absolute z-10 py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl">
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Spam</a></li>
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete</a></li>
                                 </ul>
@@ -246,12 +387,12 @@
                             <div>&bull;</div>
                             <div>10 hours ago</div>
                         </div>
-                        <div class="flex items-center hidden space-x-2">
+                        <div class="flex items-center space-x-2">
                             <button class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
                                 <svg fill="currentColor" width="24" height="6">
                                     <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">
                                 </svg>
-                                <ul class="absolute py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl">
+                                <ul class="absolute z-10 py-3 ml-8 font-semibold text-left bg-white shadow-md w-44 rounded-xl">
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Mark as Spam</a></li>
                                     <li><a href="#" class="block px-5 py-3 transition duration-150 ease-in hover:bg-gray-100">Delete</a></li>
                                 </ul>
