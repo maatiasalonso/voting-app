@@ -50,7 +50,7 @@
 
         <main class="container flex flex-row max-w-screen-lg mx-auto space-x-10">
             <div class="basis-1/4">
-                <div class="my-16 bg-white border-2 shadow-md rounded-xl">
+                <div class="sticky my-16 bg-white border-2 shadow-md rounded-xl top-8">
                     <div class="px-6 py-2 pt-6 text-center">
                         <h3 class="text-base font-semibold">Add an idea</h3>
                         <p class="mt-4 text-xs">Let us know everything!</p>

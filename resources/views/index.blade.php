@@ -67,7 +67,7 @@
                         >
                     </a>
                 </div>
-                <div class="w-full mx-4">
+                <div class="flex flex-col justify-between w-full mx-4">
                     <h4 class="text-xl font-semibold">
                         <a href="/idea"
                             class="hover:underline"
