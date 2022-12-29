@@ -42,7 +42,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function ideas(){
+    public function ideas()
+    {
         return $this->hasMany(Idea::class);
+    }
+
+    public function getAvatar()
+    {
+        $firstCharacter = $this->email[0];
+
+        $integerToUse = is_numeric($firstCharacter) ?
+                        ord(strtolower($firstCharacter)) - 21 :
+                        ord(strtolower($firstCharacter)) - 96;
+
+        return sprintf(
+            'https://www.gravatar.com/avatar/%s?s=200&d=%s-%d.png',
+            md5($this->email),
+            'https://s3.amazonaws.com/laracasts/images/forum/avatars/default-avatar',
+            $integerToUse
+        );
+
     }
 }

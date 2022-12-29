@@ -1,11 +1,11 @@
 <?php
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Dusk\Browser;
 use App\Models\Idea;
 
 uses(RefreshDatabase::class);
 
-it('can show list of ideas on main page', function () {
+it('can show list of ideas on main page', function ()
+{
     $ideaOne = Idea::factory()->create([
         'title' => 'My First Idea',
         'description' => 'Description of my first idea'
@@ -25,7 +25,8 @@ it('can show list of ideas on main page', function () {
     $response->assertSee($ideaTwo->description);
 });
 
-it('can show a single idea correctly', function () {
+it('can show a single idea correctly', function ()
+{
     $idea = Idea::factory()->create([
         'title' => 'My First Idea',
         'description' => 'Description of my first idea'
@@ -38,7 +39,8 @@ it('can show a single idea correctly', function () {
     $response->assertSee($idea->description);
 });
 
-test('ideas pagination works', function() {
+test('ideas pagination works', function()
+{
     Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
 
     $ideaOne = Idea::first();
@@ -60,7 +62,8 @@ test('ideas pagination works', function() {
     $response->assertDontSee($ideaOne->title);
 });
 
-test('idea has unique slug', function(){
+test('idea has unique slug', function()
+{
     $ideaOne = Idea::factory()->create([
         'title' => 'My First Idea',
         'description' => 'Description of my first idea'
