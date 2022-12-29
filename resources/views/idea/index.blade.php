@@ -105,8 +105,8 @@
                             </div>
 
                             <div x-data="{ isOpen: false }" class="flex items-center mt-4 space-x-2 md:mt-0">
-                                <div class="px-4 py-2 text-xs font-bold leading-none text-center uppercase bg-gray-200 rounded-full w-28 h-7">
-                                    Open
+                                <div class="py-2 text-xs font-bold leading-none text-center uppercase rounded-full w-28 h-7 status-{{ Str::kebab($idea->status->name) }}">
+                                    {{ $idea->status->name }}
                                 </div>
                                 <button @click="isOpen = !isOpen" class="relative px-3 py-2 transition duration-150 ease-in bg-gray-100 rounded-full hover:bg-gray-200 h-7">
                                     <svg fill="currentColor"
