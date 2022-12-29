@@ -14,13 +14,13 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-sm text-gray-900 bg-neutral-100">
-        <header class="flex items-center justify-between px-8 py-4">
+        <header class="flex flex-col items-center justify-between px-8 py-4 md:flex-row">
             <a href="#">
                 <button class="px-4 py-6 bg-gray-300 rounded-full">
                     LOGO
                 </button>
             </a>
-            <div class="flex items-center">
+            <div class="flex items-center mt-2 md:mt-0">
                 @if (Route::has('login'))
                     <div class="px-6 py-4">
                         @auth
@@ -48,9 +48,9 @@
             </div>
         </header>
 
-        <main class="container flex flex-row max-w-screen-lg mx-auto space-x-10">
-            <div class="basis-1/4">
-                <div class="sticky my-16 bg-white border-2 shadow-md rounded-xl top-8">
+        <main class="container flex flex-col max-w-screen-lg mx-auto md:space-x-10 md:flex-row">
+            <div class="mx-auto md:mx-0 basis-1/4">
+                <div class="my-16 bg-white border-2 shadow-md md:sticky rounded-xl md:top-8">
                     <div class="px-6 py-2 pt-6 text-center">
                         <h3 class="text-base font-semibold">Add an idea</h3>
                         <p class="mt-4 text-xs">Let us know everything!</p>
@@ -86,8 +86,8 @@
                     </form>
                 </div>
             </div>
-            <div class="basis-3/4">
-                <nav class="flex items-center justify-between text-xs">
+            <div class="w-full px-4 md:basis-3/4 md:px-0">
+                <nav class="items-center justify-between hidden text-xs md:flex">
                     <ul class="flex pb-1 space-x-10 font-semibold uppercase border-b-4">
                         <li><a href="#" class="pb-1 border-b-4 border-blue-500">All Ideas (87)</a></li>
                         <li><a href="#" class="pb-1 text-gray-400 transition duration-150 ease-in border-b-4 hover:border-blue-500">Considering (6)</a></li>
