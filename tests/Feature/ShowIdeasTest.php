@@ -1,18 +1,25 @@
 <?php
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Idea;
+use App\Models\Category;
 
 uses(RefreshDatabase::class);
 
 it('can show list of ideas on main page', function ()
 {
+    $categoryOne = Category::factory()->create(['name' => 'Category 1']);
+
+    $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
+
     $ideaOne = Idea::factory()->create([
         'title' => 'My First Idea',
+        'category_id' => $categoryOne->id,
         'description' => 'Description of my first idea'
     ]);
 
     $ideaTwo = Idea::factory()->create([
         'title' => 'My Second Idea',
+        'category_id' => $categoryTwo->id,
         'description' => 'Description of my second idea'
     ]);
 
@@ -21,13 +28,16 @@ it('can show list of ideas on main page', function ()
     $response->assertSuccessful();
     $response->assertSee($ideaOne->title);
     $response->assertSee($ideaOne->description);
+    $response->assertSee($categoryOne->name);
     $response->assertSee($ideaTwo->title);
     $response->assertSee($ideaTwo->description);
+    $response->assertSee($categoryTwo->name);
 });
 
 it('can show a single idea correctly', function ()
 {
     $idea = Idea::factory()->create([
+        'category_id' => Category::factory()->create(['name' => 'Category 1']),
         'title' => 'My First Idea',
         'description' => 'Description of my first idea'
     ]);
@@ -37,11 +47,14 @@ it('can show a single idea correctly', function ()
     $response->assertSuccessful();
     $response->assertSee($idea->title);
     $response->assertSee($idea->description);
+    $response->assertSee($idea->category->name);
 });
 
 test('ideas pagination works', function()
 {
-    Idea::factory(Idea::PAGINATION_COUNT + 1)->create();
+    Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+        'category_id' => Category::factory()->create(['name' => 'Category 1']),
+    ]);
 
     $ideaOne = Idea::first();
     $ideaOne->title = 'My First Idea';
@@ -65,11 +78,13 @@ test('ideas pagination works', function()
 test('idea has unique slug', function()
 {
     $ideaOne = Idea::factory()->create([
+        'category_id' => Category::factory()->create(['name' => 'Category 1']),
         'title' => 'My First Idea',
         'description' => 'Description of my first idea'
     ]);
 
     $ideaTwo = Idea::factory()->create([
+        'category_id' => Category::factory()->create(['name' => 'Category 2']),
         'title' => 'My First Idea',
         'description' => 'Description of my first idea'
     ]);
