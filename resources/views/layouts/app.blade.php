@@ -28,9 +28,12 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
 
-                                <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
+                                <a
+                                    href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    this.closest('form').submit();"
+                                    class="text-sm text-gray-700 underline dark:text-gray-500"
+                                >
                                     {{ __('Log Out') }}
                                 </a>
                             </form>
@@ -54,37 +57,30 @@
                 <div class="my-16 bg-white border-2 shadow-md md:sticky rounded-xl md:top-8">
                     <div class="px-6 py-2 pt-6 text-center">
                         <h3 class="text-base font-semibold">Add an idea</h3>
-                        <p class="mt-4 text-xs">Let us know everything!</p>
+                        <p class="mt-4 text-xs">
+                            @auth
+                                Let us know everything!
+                            @else
+                                Please login to create an idea.
+                            @endauth
+                        </p>
                     </div>
-
-                    <form action="#" method="POST" class="px-4 py-6 space-y-4">
-                        <div>
-                            <input type="text" class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl" placeholder="Your idea">
+                    @auth
+                        <livewire:create-idea>
+                    @else
+                        <div class="my-6 text-center">
+                            <a
+                                href="{{ route('login') }}"
+                                class="justify-center inline-block w-1/2 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in bg-blue-500 border border-blue-500 md:w-2/3 h-11 rounded-xl hover:border-blue-600 hover:bg-blue-600">
+                                Login
+                            </a>
+                            <a
+                                href="{{ route('register') }}"
+                                class="justify-center inline-block w-1/2 px-6 py-3 mt-3 text-xs font-semibold text-white transition duration-150 ease-in bg-gray-400 border border-gray-400 md:w-2/3 h-11 rounded-xl hover:border-gray-500 hover:bg-gray-500">
+                                Register
+                            </a>
                         </div>
-                        <div>
-                            <select name="category_add" id="category_add" class="w-full px-4 py-2 text-sm bg-gray-100 border-none rounded-xl">
-                                <option value="Category One">Category One</option>
-                                <option value="Category Two">Category Two</option>
-                                <option value="Category Three">Category Three</option>
-                                <option value="Category Four">Category Four</option>
-                            </select>
-                        </div>
-                        <div>
-                            <textarea name="idea" id="idea" cols="30" rows="4" class="w-full px-4 py-2 text-sm placeholder-gray-900 bg-gray-100 border-none rounded-xl" placeholder="Describe your idea"></textarea>
-                        </div>
-                        <div class="flex items-center justify-between space-x-3">
-                            <button type="button" class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-300 hover:bg-gray-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="100px" height="100px" stroke-width="1.5" stroke="currentColor" class="w-6 text-gray-600 transform -rotate-45">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
-                                </svg>
-                                <span class="ml-2">Attach</span>
-                            </button>
-
-                            <button type="submit" class="flex items-center justify-center w-1/2 px-6 py-3 text-xs font-semibold text-white transition duration-150 ease-in bg-blue-500 border border-blue-500 h-11 rounded-xl hover:border-blue-600 hover:bg-blue-600">
-                                <span>Submit</span>
-                            </button>
-                        </div>
-                    </form>
+                    @endauth
                 </div>
             </div>
             <div class="w-full px-4 md:basis-3/4 md:px-0">
