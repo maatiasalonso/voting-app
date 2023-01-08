@@ -82,13 +82,13 @@ test('ideas pagination works', function()
 
     $response = $this->get(route('idea.index'));
 
-    $response->assertSee($ideaOne->title);
-    $response->assertDontSee($ideaEleven->title);
+    $response->assertSee($ideaEleven->title);
+    $response->assertDontSee($ideaOne->title);
 
     $response = $this->get('/?page=2');
 
-    $response->assertSee($ideaEleven->title);
-    $response->assertDontSee($ideaOne->title);
+    $response->assertSee($ideaOne->title);
+    $response->assertDontSee($ideaEleven->title);
 });
 
 test('idea has unique slug', function()
