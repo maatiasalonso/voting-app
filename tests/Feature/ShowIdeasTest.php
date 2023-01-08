@@ -3,11 +3,14 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Idea;
 use App\Models\Category;
 use App\Models\Status;
+use App\Models\User;
 
 uses(RefreshDatabase::class);
 
 it('can show list of ideas on main page', function ()
 {
+    $user = User::factory()->create();
+
     $statusOpen = Status::factory()->create(['name' => 'Open']);
 
     $statusConsidering = Status::factory()->create(['name' => 'Considering']);
@@ -17,6 +20,7 @@ it('can show list of ideas on main page', function ()
     $categoryTwo = Category::factory()->create(['name' => 'Category 2']);
 
     $ideaOne = Idea::factory()->create([
+        'user_id' => $user->id,
         'title' => 'My First Idea',
         'category_id' => $categoryOne->id,
         'status_id' => $statusOpen->id,
@@ -24,6 +28,7 @@ it('can show list of ideas on main page', function ()
     ]);
 
     $ideaTwo = Idea::factory()->create([
+        'user_id' => $user->id,
         'title' => 'My Second Idea',
         'category_id' => $categoryTwo->id,
         'status_id' => $statusConsidering->id,
@@ -48,7 +53,10 @@ it('can show list of ideas on main page', function ()
 
 it('can show a single idea correctly', function ()
 {
+    $user = User::factory()->create();
+
     $idea = Idea::factory()->create([
+        'user_id' => $user->id,
         'category_id' => Category::factory()->create(['name' => 'Category 1']),
         'status_id' => Status::factory()->create(['name' => 'Open']),
         'title' => 'My First Idea',
@@ -67,7 +75,10 @@ it('can show a single idea correctly', function ()
 
 test('ideas pagination works', function()
 {
+    $user = User::factory()->create();
+
     Idea::factory(Idea::PAGINATION_COUNT + 1)->create([
+        'user_id' => $user->id,
         'category_id' => Category::factory()->create(['name' => 'Category 1']),
         'status_id' => Status::factory()->create(['name' => 'Open']),
     ]);
@@ -93,7 +104,10 @@ test('ideas pagination works', function()
 
 test('idea has unique slug', function()
 {
+    $user = User::factory()->create();
+
     $ideaOne = Idea::factory()->create([
+        'user_id' => $user->id,
         'category_id' => Category::factory()->create(['name' => 'Category 1']),
         'status_id' => Status::factory()->create(['name' => 'Open']),
         'title' => 'My First Idea',
@@ -101,6 +115,7 @@ test('idea has unique slug', function()
     ]);
 
     $ideaTwo = Idea::factory()->create([
+        'user_id' => $user->id,
         'category_id' => Category::factory()->create(['name' => 'Category 2']),
         'status_id' => Status::factory()->create(['name' => 'Closed']),
         'title' => 'My First Idea',
