@@ -12,7 +12,7 @@
 >
     <div class="hidden px-5 py-8 border-r border-gray-100 md:block">
         <div class="text-center">
-            <div class="text-2xl font-semibold">{{ $votesCount }}</div>
+            <div class="text-2xl font-semibold {{ $hasVoted ? 'text-blue-400' : '' }}">{{ $votesCount }}</div>
             <div class="text-gray-500">Votes</div>
         </div>
 
@@ -21,7 +21,7 @@
                 class="w-20 px-4 py-3 text-xs font-bold uppercase transition duration-150 ease-in rounded-xl border
                 {{
                     $hasVoted ?
-                    'bg-blue-500 border-blue-500 hover:bg-blue-600 text-white' :
+                    'bg-blue-400 border-blue-400 hover:bg-blue-500 text-white' :
                     'bg-gray-200 border-gray-200 hover:bg-gray-400'
                 }}"
             >
@@ -107,14 +107,14 @@
 
                 <div class="flex items-center mt-4 md:hidden md:mt-0">
                     <div class="h-10 px-4 py-2 pr-8 text-center bg-gray-100 rounded-xl">
-                        <div class="text-sm font-bold leading-none">{{ $votesCount }}</div>
+                        <div class="text-sm font-bold leading-none {{ $hasVoted ? 'text-blue-400' : '' }}">{{ $votesCount }}</div>
                         <div class="text-xs font-semibold leading-none text-gray-400">Votes</div>
                     </div>
                     <button
                         class="w-20 px-4 py-3 -m-5 text-xs font-bold uppercase transition duration-150 ease-in rounded-xl border
                         {{
                             $hasVoted ?
-                            'bg-blue-500 border-blue-500 hover:bg-blue-600 text-white' :
+                            'bg-blue-400 border-blue-400 hover:bg-blue-500 text-white' :
                             'bg-gray-200 border-gray-200 hover:bg-gray-300'
                         }}"
                     >

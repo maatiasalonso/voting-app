@@ -111,7 +111,7 @@
                             class="w-20 px-4 py-3 -m-5 text-xs font-bold uppercase transition duration-150 ease-in rounded-xl
                             {{
                                 $hasVoted ?
-                                'text-white bg-blue-500 border border-blue-500 hover:border-blue-600 hover:bg-blue-600' :
+                                'text-white bg-blue-400 border border-blue-400 hover:border-blue-500 hover:bg-blue-500' :
                                 'bg-gray-200 border border-gray-200 hover:border-gray-300 hover:bg-gray-300'
                             }}"
                         >
@@ -302,7 +302,7 @@
                     class="text-xl leading-snug
                     {{
                         $hasVoted ?
-                        'text-blue-500' :
+                        'text-blue-400' :
                         ''
                     }}"
                 >
@@ -315,7 +315,7 @@
                 class="w-32 px-6 py-3 text-xs font-semibold uppercase transition duration-150 ease-in h-11 rounded-xl
                 {{
                     $hasVoted ?
-                    'text-white bg-blue-500 border border-blue-500 hover:border-blue-600 hover:bg-blue-600' :
+                    'text-white bg-blue-400 border border-blue-400 hover:border-blue-500 hover:bg-blue-500' :
                     'bg-gray-200 border border-gray-200 hover:border-gray-300 hover:bg-gray-300'
                 }}"
             >
