@@ -73,3 +73,33 @@ test('votes count shows correctly on show page livewire component', function () 
     ])
     ->assertSet('votesCount', 12);
 });
+
+test('user who is logged in shows voted if idea already voted for', function () {
+
+    $user = User::factory()->create();
+
+    $idea = Idea::factory()->create([
+        'user_id' => $user->id,
+        'category_id' => Category::factory()->create(['name' => 'Category 1']),
+        'status_id' => Status::factory()->create(['name' => 'Open']),
+        'title' => 'My First Idea',
+        'description' => 'Description of my first idea'
+    ]);
+
+    Vote::factory()->create([
+        'idea_id' => $idea->id,
+        'user_id' => $user->id,
+    ]);
+
+    $response = $this->actingAs($user)->get(route('idea.index'));
+
+    $ideaWithVotes = $response['ideas']->items()[0];
+
+    Livewire::actingAs($user)
+        ->test(IdeaShow::class, [
+            'idea' => $ideaWithVotes,
+            'votesCount' => 12,
+        ])
+        ->assertSet('hasVoted', true)
+        ->assertSee('Voted');
+});

@@ -24,13 +24,27 @@
                 </div>
                 <div class="flex flex-col justify-between mt-6 md:flex-row md:items-center">
                     <div class="flex items-center -ml-2 space-x-2 text-xs font-semibold text-gray-400 md:ml-0">
-                        <div class="hidden font-bold text-gray-900 md:block">{{ $idea->user->name }}</div>
-                        <div class="hidden md:block">&bull;</div>
-                        <div>{{ $idea->created_at->diffForHumans() }}</div>
-                        <div>&bull;</div>
-                        <div>{{ $idea->category->name }}</div>
-                        <div>&bull;</div>
-                        <div class="text-gray-700">3 Comments</div>
+                        <div class="hidden font-bold text-gray-900 md:block">
+                            {{ $idea->user->name }}
+                        </div>
+                        <div class="hidden md:block">
+                            &bull;
+                        </div>
+                        <div>
+                            {{ $idea->created_at->diffForHumans() }}
+                        </div>
+                        <div>
+                            &bull;
+                        </div>
+                        <div>
+                            {{ $idea->category->name }}
+                        </div>
+                        <div>
+                            &bull;
+                        </div>
+                        <div class="text-gray-700">
+                            3 Comments
+                        </div>
                     </div>
                     <div
                         x-data="{ isOpen: false }"
@@ -81,11 +95,31 @@
                     </div>
                     <div class="flex items-center mt-4 md:hidden md:mt-0">
                         <div class="h-10 px-4 py-2 pr-8 text-center bg-gray-100 rounded-xl">
-                            <div class="text-sm font-bold leading-none">{{ $votesCount }}</div>
+                            <div
+                                class="text-sm font-bold leading-none
+                                {{
+                                    $hasVoted ?
+                                    'text-blue-500' :
+                                    ''
+                                }}"
+                            >
+                                {{ $votesCount }}
+                            </div>
                             <div class="text-xs font-semibold leading-none text-gray-400">Votes</div>
                         </div>
-                        <button class="w-20 px-4 py-3 -m-5 text-xs font-bold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 rounded-xl hover:bg-gray-300">
-                            Vote
+                        <button
+                            class="w-20 px-4 py-3 -m-5 text-xs font-bold uppercase transition duration-150 ease-in rounded-xl
+                            {{
+                                $hasVoted ?
+                                'text-white bg-blue-500 border border-blue-500 hover:border-blue-600 hover:bg-blue-600' :
+                                'bg-gray-200 border border-gray-200 hover:border-gray-300 hover:bg-gray-300'
+                            }}"
+                        >
+                            {{
+                                $hasVoted ?
+                                'Voted' :
+                                'Vote'
+                            }}
                         </button>
                     </div>
                 </div>
@@ -264,11 +298,34 @@
         </div>
         <div class="items-center hidden space-x-3 md:flex">
             <div class="px-3 py-2 font-semibold text-center bg-white rounded-xl">
-                <div class="text-xl leading-snug">{{ $votesCount }}</div>
+                <div
+                    class="text-xl leading-snug
+                    {{
+                        $hasVoted ?
+                        'text-blue-500' :
+                        ''
+                    }}"
+                >
+                    {{ $votesCount }}
+                </div>
                 <div class="text-xs text-gray-400 leagind-none">Votes</div>
             </div>
-            <button type="button" class="w-32 px-6 py-3 text-xs font-semibold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 h-11 rounded-xl hover:border-gray-300 hover:bg-gray-300">
-                <span>Vote</span>
+            <button
+                type="button"
+                class="w-32 px-6 py-3 text-xs font-semibold uppercase transition duration-150 ease-in h-11 rounded-xl
+                {{
+                    $hasVoted ?
+                    'text-white bg-blue-500 border border-blue-500 hover:border-blue-600 hover:bg-blue-600' :
+                    'bg-gray-200 border border-gray-200 hover:border-gray-300 hover:bg-gray-300'
+                }}"
+            >
+                <span>
+                    {{
+                        $hasVoted ?
+                        'Voted' :
+                        'Vote'
+                    }}
+                </span>
             </button>
         </div>
     </div> {{-- end buttons container --}}

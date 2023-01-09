@@ -17,8 +17,19 @@
         </div>
 
         <div class="mt-8">
-            <button class="w-20 px-4 py-3 text-xs font-bold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 hover:bg-gray-400 rounded-xl">
-                Vote
+            <button
+                class="w-20 px-4 py-3 text-xs font-bold uppercase transition duration-150 ease-in rounded-xl border
+                {{
+                    $hasVoted ?
+                    'bg-blue-500 border-blue-500 hover:bg-blue-600 text-white' :
+                    'bg-gray-200 border-gray-200 hover:bg-gray-400'
+                }}"
+            >
+                {{
+                    $hasVoted ?
+                    'Voted' :
+                    'Vote'
+                }}
             </button>
         </div>
     </div>
@@ -99,8 +110,19 @@
                         <div class="text-sm font-bold leading-none">{{ $votesCount }}</div>
                         <div class="text-xs font-semibold leading-none text-gray-400">Votes</div>
                     </div>
-                    <button class="w-20 px-4 py-3 -m-5 text-xs font-bold uppercase transition duration-150 ease-in bg-gray-200 border border-gray-200 rounded-xl hover:bg-gray-300">
-                        Voted
+                    <button
+                        class="w-20 px-4 py-3 -m-5 text-xs font-bold uppercase transition duration-150 ease-in rounded-xl border
+                        {{
+                            $hasVoted ?
+                            'bg-blue-500 border-blue-500 hover:bg-blue-600 text-white' :
+                            'bg-gray-200 border-gray-200 hover:bg-gray-300'
+                        }}"
+                    >
+                        {{
+                            $hasVoted ?
+                            'Voted' :
+                            'Vote'
+                        }}
                     </button>
                 </div>
 
