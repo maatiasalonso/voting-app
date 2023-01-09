@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Idea;
 use App\Models\Category;
+use App\Models\Idea;
 use App\Models\Status;
 use App\Models\User;
 
